@@ -1,85 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie App</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-<body>
+  <body>
     <header class="main-header">
-        <nav class="primary-nav">
-            <input type="text" class="input-movie" placeholder="Search Movies">
-            <button class="searchmovie">Search</button>
-        </nav>
+      <nav class="primary-nav">
+        <input type="text" class="input-movie" placeholder="Search Movies" />
+        <button class="searchmovie">Search</button>
+      </nav>
     </header>
 
     <main>
-       
+      <div class="index_movie">
         <div class="slidercontainer">
-            <div class="slides">
-                <div class="showSlide">
-                    <img src="images/image1.jpg" class="img" />
-                </div>
-                <div class="showSlide">
-                    <img src="images/image2.jpg" class="img" />
-                </div>
-
-                <div class="showSlide">
-                    <img src="images/image3.jpg" class="img" />
-                </div>
-
-                <div class="showSlide">
-                    <img src="images/image4.jpg" class="img" />
-                </div>
+          <div class="slides">
+            <div class="showSlide">
+              <img src="images/image1.jpg" class="img" />
             </div>
-            <div class="slider-controls">
-                <button class="next-btn">Next</button>
-                <button class="prev-btn">Prev</button>
+            <div class="showSlide">
+              <img src="images/image2.jpg" class="img" />
             </div>
+
+            <div class="showSlide">
+              <img src="images/image3.jpg" class="img" />
+            </div>
+
+            <div class="showSlide">
+              <img src="images/image4.jpg" class="img" />
+            </div>
+          </div>
+          <div class="slider-controls">
+            <button class="next-btn">Next</button>
+            <button class="prev-btn">Prev</button>
+          </div>
         </div>
         <div class="fav-movie">
-            <h1>Know Everything About Your Fav Movie</h1>
+          <h1>Know Everything About Your Fav Movie</h1>
         </div>
         <div class="index-movies">
-            <div class="movie">
-                <a href="movieinfo.html" onclick="searchmovie('avatar')"; >
-                <img src="images/avatar.jpg">
-                </a>
-            </div>
-            <div class="movie">
-                <a href="movieinfo.html" >
-                <img src="images/dunkirk.jpg" onclick="searchmovie('dunkirk')">
-                </a>
-            </div>
-            <div class="movie">
-                <a href="movieinfo.html" onclick="searchmovie('johnyenglish')">
-                <img src="images/johnyenglish.jpg">
-                </a>
-            </div>
-            <div class="movie">
-                <a href="movieinfo.html" onclick="searchmovie('jumanji')">
-                <img src="images/jumanji.jpg">
-                </a>
-            </div>
-            <div class="movie">
-                <a href="movieinfo.html" onclick="searchmovie('titanic')">
-                <img src="images/titanic.jpg">
-                </a>
-            </div>
-
+          <div class="movie">
+            <img src="images/avatar.jpg" onclick="searchmovie('avatar')" />
+          </div>
+          <div class="movie">
+            <img src="images/dunkirk.jpg" onclick="searchmovie('dunkirk')" />
+          </div>
+          <div class="movie">
+            <img
+              src="images/johnyenglish.jpg"
+              onclick="searchmovie('johnyenglish')"
+            />
+          </div>
+          <div class="movie">
+            <img src="images/jumanji.jpg" onclick="searchmovie('jumanji')" />
+          </div>
+          <div class="movie">
+            <img src="images/titanic.jpg" onclick="searchmovie('titanic')" />
+          </div>
         </div>
+      </div>
+
+      <!-- movieinfo page -->
+      <div class="movie_info">
+        <div class="movieinfo">Movie name</div>
+      </div>
     </main>
 
     <footer class="main-footer">
-        <p>CopyRightt@c2020</p>
+      <p>CopyRightt@c2020</p>
     </footer>
 
-    
-    <script  src="app.js"></script>
-    <script src="movie.js"></script>
-</body>
-
+    <script src="app.js"></script>
+  </body>
 </html>
