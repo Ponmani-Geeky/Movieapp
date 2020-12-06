@@ -6,6 +6,13 @@ const next = document.querySelector(".next-btn");
 const prev = document.querySelector(".prev-btn");
 const indexmovie = document.querySelector(".index_movie");
 let info = document.querySelector(".movieinfo");
+let minfo = document.querySelector(".movie_info");
+let moviehead = document.querySelector(".movie_name");
+//movie-information details
+let movieyear = document.querySelector(".movieyear");
+let movieruntime = document.querySelector(".movieruntime");
+let movierating = document.querySelector(".movierate");
+
 //events
 searchMovie.addEventListener("click", movieinfo);
 
@@ -60,10 +67,10 @@ function searchmovie(value) {
       return response.json();
     })
     .then((data) => {
-      console.log(data.poster);
+      console.log(data);
       indexmovie.style.display = "none";
       info.style.display = "block";
-      info.innerHTML = data;
+      minfo.style.display = "block";
       moviedisplay(data);
     })
     .catch((err) => {
@@ -76,7 +83,38 @@ function movieinfo() {
 }
 
 function moviedisplay(data) {
-  const img = document.createElement("img");
+  let mname = document.createElement("h1");
+  mname.innerHTML = data.title;
+  moviehead.append(mname);
+
+  img = document.createElement("img");
   img.src = data.poster;
   info.append(img);
+
+  // let informationdiv = document.createElement("div");
+  // informationdiv.classList.add("movie_information");
+  let divmovie = document.createElement("h2");
+  divmovie.innerHTML = data.year;
+  movieyear.append(divmovie);
+
+  let divmovie1 = document.createElement("h2");
+  divmovie1.innerHTML = data.length;
+  movieruntime.append(divmovie1);
+
+  let divmovie2 = document.createElement("h2");
+  divmovie2.innerHTML = data.rating;
+  movierating.append(divmovie2);
+   
+  let movieplot = document.querySelector(".movieplot");
+  let divmovie3 = document.createElement("h2");
+  divmovie3.innerHTML = data.plot;
+  movieplot.append(divmovie3);
+  
+  // let divmovie4 = document.createElement("video");
+  // let divmovie41=document.createElement("source");
+  // divmovie41.src = data.trailer.link;
+  // divmovie41.append(divmovie4);
+  // informationdiv.append(divmovie4);
+
+  // minfo.append(informationdiv);
 }
