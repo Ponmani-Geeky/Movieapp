@@ -51,6 +51,9 @@ startsilde();
 
 //Search Movies
 function searchmovie(value) {
+  if(movieInput.value){
+    movieInput.value="";
+  }
   console.log("ponmani.....");
   fetch(
     `https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/${value}`,
@@ -83,33 +86,71 @@ function movieinfo() {
 }
 
 function moviedisplay(data) {
+  // Get all the fields to insert data
+  const movieName = document.querySelector(".movie_name .name");
+  const movieImage = document.querySelector(".movieinfo .image");
+  const movieYear = document.querySelector(".movieyear .year");
+  const movieRuntime = document.querySelector(".movieruntime .runtime");
+  const movieRating = document.querySelector(".movierate .rating");
+  const moviePlot = document.querySelector(".movieplot .plot");
+
+  // Remove old movie name if any
+  if (movieName.firstChild) {
+    movieName.firstChild.remove();
+  }
+  // add new name
   let mname = document.createElement("h1");
   mname.innerHTML = data.title;
-  moviehead.append(mname);
+  movieName.appendChild(mname);
 
+  // Remove old image if any
+  if (movieImage.firstChild) {
+    movieImage.firstChild.remove();
+  }
+  // add new image
   img = document.createElement("img");
   img.src = data.poster;
-  info.append(img);
+  movieImage.append(img);
 
   // let informationdiv = document.createElement("div");
   // informationdiv.classList.add("movie_information");
+
+  // Remove old year if any
+  if (movieYear.firstChild) {
+    movieYear.firstChild.remove();
+  }
+  // add new year
   let divmovie = document.createElement("h2");
   divmovie.innerHTML = data.year;
-  movieyear.append(divmovie);
+  movieYear.append(divmovie);
 
+  // Remove old runtime if any
+  if (movieRuntime.firstChild) {
+    movieRuntime.firstChild.remove();
+  }
+  // add new runtime
   let divmovie1 = document.createElement("h2");
   divmovie1.innerHTML = data.length;
-  movieruntime.append(divmovie1);
+  movieRuntime.append(divmovie1);
 
+  // Remove old rating if any
+  if (movieRating.firstChild) {
+    movieRating.firstChild.remove();
+  }
+  // add new rating
   let divmovie2 = document.createElement("h2");
   divmovie2.innerHTML = data.rating;
-  movierating.append(divmovie2);
-   
-  let movieplot = document.querySelector(".movieplot");
+  movieRating.append(divmovie2);
+
+  // Remove old plot if any
+  if (moviePlot.firstChild) {
+    moviePlot.firstChild.remove();
+  }
+  // add new plot
   let divmovie3 = document.createElement("h2");
   divmovie3.innerHTML = data.plot;
-  movieplot.append(divmovie3);
-  
+  moviePlot.append(divmovie3);
+
   // let divmovie4 = document.createElement("video");
   // let divmovie41=document.createElement("source");
   // divmovie41.src = data.trailer.link;
