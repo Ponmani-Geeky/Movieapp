@@ -58,6 +58,20 @@ main {
   position: relative;
   overflow: hidden;
 }
+.movie_name{
+  display: flex;
+  justify-content: center;
+}
+
+.movie_top{
+  margin-right: 7rem;
+}
+
+.homeback{
+  background-color: darkseagreen;
+  padding: 0.3rem;
+  border-radius: 6px;
+}
 
 .slides {
   display: flex;
@@ -147,9 +161,45 @@ h1 {
   font-size: 12px;
 }
 
+.fullscreen{
+  position: fixed;
+  z-index: 10;
+  background-color: lime;
+}
+
+.loader {
+  display: none;
+  top:23rem;
+  left:8rem;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  position: fixed;
+  z-index: 10;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 
 @media (min-width: 600px) {
-
+   
+  .loader {
+    top:19rem;
+    left:37rem;
+  }
   .slidercontainer {
     margin: 0 auto;
     width: 80%;

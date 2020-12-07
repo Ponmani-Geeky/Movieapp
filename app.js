@@ -1,10 +1,11 @@
 const movieInput = document.querySelector(".input-movie");
 const searchMovie = document.querySelector(".searchmovie");
+const backbtn = document.querySelector(".homeback");
 let slides = document.querySelectorAll(".showSlide");
 let slide = document.querySelector(".slides");
 const next = document.querySelector(".next-btn");
 const prev = document.querySelector(".prev-btn");
-const indexmovie = document.querySelector(".index_movie");
+let indexmovie = document.querySelector(".index_movie");
 let info = document.querySelector(".movieinfo");
 let minfo = document.querySelector(".movie_info");
 let moviehead = document.querySelector(".movie_name");
@@ -13,8 +14,21 @@ let movieyear = document.querySelector(".movieyear");
 let movieruntime = document.querySelector(".movieruntime");
 let movierating = document.querySelector(".movierate");
 
+//preloader
+let loader=document.querySelector(".loader");
+
 //events
 searchMovie.addEventListener("click", movieinfo);
+backbtn.addEventListener("click",callhome);
+
+//back button
+function callhome(){
+  indexmovie.style.display = "block";
+      minfo.style.display = "none";
+      if(movieInput.value){
+        movieInput.value="";
+      }
+}
 
 //Carousal silder
 let index = 0;
@@ -51,10 +65,9 @@ startsilde();
 
 //Search Movies
 function searchmovie(value) {
-  if(movieInput.value){
-    movieInput.value="";
-  }
-  console.log("ponmani.....");
+  // indexmovie.classList.add("fullscreen");
+  loader.style.display="block"
+  console.log("ponmani.....",value);
   fetch(
     `https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/${value}`,
     {
@@ -70,11 +83,30 @@ function searchmovie(value) {
       return response.json();
     })
     .then((data) => {
+      loader.style.display="none"
       console.log(data);
+      // console.log("type..",data.title,".....",data.title!=value)
+      // let namemovie=data.title;
+      // let namem=Array.from(namemovie.split(" "));
+      // let lowermovie=namem.map(m=>m.toLowerCase());
+      // console.log(lowermovie);
+      if(!data.title || !data.poster  || !data.year){
+        loader.style.display="none"
+        alert("Movie Not Found")
+        if(movieInput.value){
+          movieInput.value="";
+        }
+      }
+      else{
+        console.log("else...part....")
       indexmovie.style.display = "none";
       info.style.display = "block";
       minfo.style.display = "block";
       moviedisplay(data);
+      if(movieInput.value){
+        movieInput.value="";
+      }
+    }
     })
     .catch((err) => {
       console.log(err);
@@ -82,10 +114,16 @@ function searchmovie(value) {
 }
 
 function movieinfo() {
+  if(movieInput.value){
   searchmovie(movieInput.value);
+  }
+  else{
+    alert("Please Enter the Movie Name")
+  }
 }
 
 function moviedisplay(data) {
+  
   // Get all the fields to insert data
   const movieName = document.querySelector(".movie_name .name");
   const movieImage = document.querySelector(".movieinfo .image");
@@ -148,9 +186,13 @@ function moviedisplay(data) {
   }
   // add new plot
   let divmovie3 = document.createElement("h2");
+  if(data.plot!=""){
   divmovie3.innerHTML = data.plot;
+  }
+  else{
+    divmovie3.innerHTML = "Not Found";
+  }
   moviePlot.append(divmovie3);
-
   // let divmovie4 = document.createElement("video");
   // let divmovie41=document.createElement("source");
   // divmovie41.src = data.trailer.link;
